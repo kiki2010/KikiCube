@@ -10,5 +10,3 @@ All GNDs will be connected together.
 This testing period was quite short because at some point I connected something wrong and one of the L9110S integrated circuits burned out 😱
 ![day1](https://github.com/user-attachments/assets/f08f4463-372f-419a-82ee-f80b087fa47d)
 > We will miss you L9110S 🫠
-
-So, I will try to get another this week so I can continue with this part of the project. But I will need to look more information about how to connect the raspberry py with ChatGPT to talk with it :D
