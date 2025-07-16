@@ -1,0 +1,10 @@
+# **KikiCube**
+[![Athena Award Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Faward.athena.hackclub.com%2Fapi%2Fbadge)](https://award.athena.hackclub.com?utm_source=readme)
+
+### **Day 1: 1 hour and one minute**
+Today I experimented with the use and resistance of the H-bridge I'll be using in this project.
+A1-A, A1-B, B1-A, and B1-B will be connected to the Raspberry Pi.
+VCC will be connected to an external power supply.
+All GNDs will be connected together.
+
+This testing period was quite short because at some point I connected something wrong and one of the L9110S integrated circuits burned out.
