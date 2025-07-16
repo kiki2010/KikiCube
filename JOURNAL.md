@@ -13,6 +13,6 @@ All GNDs will be connected together.
 
 > We will miss you L9110S 🫠
 
-So, I will try to get another this week so I can continue with this part of the project. But I will need to look more information about how to connect the raspberry py with ChatGPT to talk with it :D
+So, I will try to get another this week so I can continue with this part of the project. But I will need to look more information about how to connect with ChatGPT to talk with it :D
 
 ## **Day 2:**
