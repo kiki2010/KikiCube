@@ -16,7 +16,7 @@ All GNDs will be connected together.
 So, I will try to get another this week so I can continue with this part of the project. But I will need to look more information about how to connect with ChatGPT to talk with it :D
 
 ## **Day 2: 1 hour**
-First 30 minutes:
+# First 30 minutes:
 I experimented with a bluetooth gamepad, connecting it to the Raspberry Pi and making a simple program to read it.
 
 ```
@@ -40,3 +40,7 @@ for event in gamepad.read_loop():
 ```
 
 ![gamepad](https://github.com/user-attachments/assets/5ffcbdce-be8c-471e-854d-47fa9d50a15d)
+
+# The other 30 minutes:
+Looking for the perfect screen, I thought it would be a good idea to find a small screen so I could more easily modify programs on the Raspberry Pi, so I took apart a tablet, although since it's a generic one, I couldn't find an adapter for it. Anyway, I'll try to fix another one later to connect it to the Raspberry Pi conventionally.
+
