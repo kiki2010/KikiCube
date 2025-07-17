@@ -44,3 +44,5 @@ for event in gamepad.read_loop():
 # The other 30 minutes:
 Looking for the perfect screen, I thought it would be a good idea to find a small screen so I could more easily modify programs on the Raspberry Pi, so I took apart a tablet, although since it's a generic one, I couldn't find an adapter for it. Anyway, I'll try to fix another one later to connect it to the Raspberry Pi conventionally.
 
+![tablet1](https://github.com/user-attachments/assets/0b0efcd2-7b9e-44ba-b572-d1cdf62fbc63)
+![tablet2](https://github.com/user-attachments/assets/25714fb3-5f95-4dbc-9a62-56b0b20eb257)
