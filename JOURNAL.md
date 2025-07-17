@@ -38,3 +38,5 @@ for event in gamepad.read_loop():
     if event.type in [ecodes.EV_KEY, ecodes.EV_ABS]:
         print(categorize(event))
 ```
+
+![gamepad](https://github.com/user-attachments/assets/5ffcbdce-be8c-471e-854d-47fa9d50a15d)
