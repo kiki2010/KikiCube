@@ -49,3 +49,18 @@ Looking for the perfect screen, I thought it would be a good idea to find a smal
 
 ![tablet1](https://github.com/user-attachments/assets/0b0efcd2-7b9e-44ba-b572-d1cdf62fbc63)
 ![tablet2](https://github.com/user-attachments/assets/25714fb3-5f95-4dbc-9a62-56b0b20eb257)
+
+## **Day 3: 1 hour 48 minutes**
+### 48 minutes:
+Configuration and testing of speakers and microphone. I use the webcam microphone.
+
+![webcam](https://github.com/user-attachments/assets/4d232832-a4ed-453e-83af-b5eeac80d7e1)
+
+### 1 Hour:
+Installing and configuring Rhasspy, I haven't tested it yet.
+
+## **Day 4: 1 hour 1 minute**
+I tried testing with a simple Rhasspy test but didn't make any progress :C
+I'll continue testing this.
+
+![day 4](https://github.com/user-attachments/assets/f9d3503d-44aa-4064-ace7-95daece816ed)
