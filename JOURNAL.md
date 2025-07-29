@@ -67,7 +67,8 @@ I'll continue testing this.
 
 ## **Day 5: 1 hour 19 minutes**
 Test with gamepad and Leds. The X and Y axes of the gamepad joystick are read. In order to reflect the reading on the LEDs.
-![Adobe Express - kikicubetestled (1)](https://github.com/user-attachments/assets/dacff2fb-9c89-4fba-a1da-95bab9f771b0)
+
+![kikicubetestled](https://github.com/user-attachments/assets/f4a8b12f-4238-4185-b857-fa6a34ef3d9a)
 
 This is the program, you can also find it as testgamepadLed.py in test folder.
 ```python
