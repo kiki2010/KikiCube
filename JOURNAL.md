@@ -22,7 +22,7 @@ So, I will try to get another this week so I can continue with this part of the 
 ### First 30 minutes:
 I experimented with a bluetooth gamepad, connecting it to the Raspberry Pi and making a simple program to read it.
 
-```
+```python
 #Get libraries
 from evdev import InputDevice, categorize, ecodes, list_devices
 
@@ -64,3 +64,74 @@ I tried testing with a simple Rhasspy test but didn't make any progress :C
 I'll continue testing this.
 
 ![day 4](https://github.com/user-attachments/assets/f9d3503d-44aa-4064-ace7-95daece816ed)
+
+## **Day 5: 1 hour 19 minutes**
+Test with gamepad and Leds. The X and Y axes of the gamepad joystick are read. In order to reflect the reading on the LEDs.
+![Adobe Express - kikicubetestled (1)](https://github.com/user-attachments/assets/dacff2fb-9c89-4fba-a1da-95bab9f771b0)
+
+This is the program, you can also find it as testgamepadLed.py in test folder.
+```python
+#Get libraries
+from evdev import InputDevice, categorize, ecodes, list_devices
+import RPi.GPIO as GPIO
+
+#-- Setting of GPIO --
+GPIO.setmode(GPIO.BCM)
+
+led_up = 17
+led_down = 27
+led_left = 22
+led_right = 23
+
+for pin in [led_up, led_down, led_left, led_right]:
+    GPIO.setup(pin, GPIO.OUT)
+    GPIO.output(pin, False)
+
+#-- Get Gamepad --
+#get devices
+devices = [InputDevice(path) for path in list_devices()]
+
+#show device path and name, here we'll get the path for the gamepad.
+for device in devices:
+    print(device.path, device.name)
+
+#gamepad, change with the correct path
+gamepad = InputDevice('/dev/input/event9')
+print("everything ready for LED control")
+
+#--- LED control ---
+
+try: 
+    for event in gamepad.read_loop():
+        #If movement of the joystick is detected
+        if event.type == ecodes.EV_ABS:
+            # Y axis
+            if event.code == ecodes.ABS_Y:
+                if event.values < 128:
+                    GPIO.output(led_up, True)
+                    GPIO.output(led_down, False)
+                elif event.values > 128:
+                    GPIO.output(led_up, False)
+                    GPIO.output(led_down, True)
+                else:
+                    GPIO.output(led_up, False)
+                    GPIO.output(led_down, False)
+
+            # X axis
+            if event.code == ecodes.ABS_X:
+                if event.values < 128:
+                    GPIO.output(led_left, True)
+                    GPIO.output(led_right, False)
+                elif event.values > 128:
+                    GPIO.output(led_left, False)
+                    GPIO.output(led_right, True)
+                else:
+                    GPIO.output(led_left, False)
+                    GPIO.output(led_right, False)
+
+except KeyboardInterrupt:
+    print("Bye :D")
+    GPIO.cleanup
+```
+
+<img width="694" height="582" alt="Captura de pantalla 2025-07-28 202012" src="https://github.com/user-attachments/assets/a7596090-8bd6-4c17-b011-41b5d890dc2e" />
