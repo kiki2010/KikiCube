@@ -64,22 +64,22 @@ print("everything ready for LED control")
 try: 
     for event in gamepad.read_loop():
         if event.type == ecodes.EV_ABS:
+            #Stopped
+            stopped()
+            
             #Forwards and backward
             if event.code == ecodes.ABS_Y:
                 if event.value < 128:
                     forwards()
                 elif event.value > 128:
                     backward()
-                else:
-                    stopped()
 
-        if event.code == ecodes.ABS_X:
+            if event.code == ecodes.ABS_X:
                 if event.value < 128:
                     left()
                 elif event.value > 128:
                     right()
-                else:
-                    stopped()
+
 
 except KeyboardInterrupt:
     print("Bye :D")
