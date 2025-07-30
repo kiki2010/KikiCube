@@ -39,10 +39,10 @@ try:
         if event.type == ecodes.EV_ABS:
             # Y axis
             if event.code == ecodes.ABS_Y:
-                if event.values < 128:
+                if event.value < 128:
                     GPIO.output(led_up, True)
                     GPIO.output(led_down, False)
-                elif event.values > 128:
+                elif event.value > 128:
                     GPIO.output(led_up, False)
                     GPIO.output(led_down, True)
                 else:
@@ -51,10 +51,10 @@ try:
 
             # X axis
             if event.code == ecodes.ABS_X:
-                if event.values < 128:
+                if event.value < 128:
                     GPIO.output(led_left, True)
                     GPIO.output(led_right, False)
-                elif event.values > 128:
+                elif event.value > 128:
                     GPIO.output(led_left, False)
                     GPIO.output(led_right, True)
                 else:
