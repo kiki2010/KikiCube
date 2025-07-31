@@ -143,6 +143,9 @@ except KeyboardInterrupt:
 ### 23 minutes:
 Simulate the control of the motors with the LED lights, truly recreating what it would be like if the H bridge were connected instead of the LEDs. The idea is to continue working with voice control.
 
+![kikicubeledacurate](https://github.com/user-attachments/assets/f9669ec0-ef21-4d02-91d4-dfd286c14f57)
+
+
 ```python
 ''' 
 30/07/2025
@@ -231,5 +234,10 @@ except KeyboardInterrupt:
     print("Bye :D")
     GPIO.cleanup
 ```
+
+<img width="692" height="626" alt="Captura de pantalla 2025-07-30 193009" src="https://github.com/user-attachments/assets/2bf314b6-8579-4497-8594-baf35d92f329" />
+
 ### 1 hour 44 minutes
 The truth is that, since this is my first Raspberry Pi project, it's a bit ambitious. After successfully controlling the LEDs with the remote, I wanted to go a step further and start using Rhasspy for voice control. However, installing everything got messy, and now every time I try to launch Rhasspy, I get an error. So, I'll continue tomorrow. But after the fastest hour and forty minutes of my life, I think the most viable solution is to restore my Raspberry Pi and start configuring Rhasspy from scratch.
+
+<img width="676" height="617" alt="Captura de pantalla 2025-07-30 212916" src="https://github.com/user-attachments/assets/2190ceff-7b60-4a6b-9fa9-f770636e5949" />
