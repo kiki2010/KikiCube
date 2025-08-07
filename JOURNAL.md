@@ -252,5 +252,8 @@ I formatted the SD and reinstalled Raspberry Pi OS, I was also able to do the in
 ### 52 minutes:
 I set up Rhasspy. After a lot of trouble with the setup, I managed to get it to recognize recorded audio. The only thing left to do is get it to work with live audio, as it fails to analyze.
 
-![Imagen de WhatsApp 2025-08-06 a las 22 41 28_4b558003](https://github.com/user-attachments/assets/e120ee2d-2224-471b-8714-19b09b170a90)
+<img width="500" src="https://github.com/user-attachments/assets/e120ee2d-2224-471b-8714-19b09b170a90" />
+
 ![Video de WhatsApp 2025-08-06 a las 22 41 52_cf10b836](https://github.com/user-attachments/assets/e81e48fa-2164-4f71-b81e-a9265b1755ca)
+
+<img width="500" src="https://github.com/user-attachments/assets/27ecd006-3b5c-4bc8-932b-f5be05b03387" />
