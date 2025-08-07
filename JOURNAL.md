@@ -241,3 +241,16 @@ except KeyboardInterrupt:
 The truth is that, since this is my first Raspberry Pi project, it's a bit ambitious. After successfully controlling the LEDs with the remote, I wanted to go a step further and start using Rhasspy for voice control. However, installing everything got messy, and now every time I try to launch Rhasspy, I get an error. So, I'll continue tomorrow. But after the fastest hour and forty minutes of my life, I think the most viable solution is to restore my Raspberry Pi and start configuring Rhasspy from scratch.
 
 <img width="676" height="617" alt="Captura de pantalla 2025-07-30 212916" src="https://github.com/user-attachments/assets/2190ceff-7b60-4a6b-9fa9-f770636e5949" />
+
+## **Day 7: 1 hour 32 minutes**
+### 40 minutes:
+I formatted the SD and reinstalled Raspberry Pi OS, I was also able to do the initial setup of Rhasspy, installing everything necessary and testing the microphone.
+
+![Video de WhatsApp 2025-08-06 a las 22 40 37_e3f8d59b](https://github.com/user-attachments/assets/db99d565-805b-4a4b-a2b9-14a0e94742f1)
+![Video de WhatsApp 2025-08-06 a las 22 40 49_8702dec3](https://github.com/user-attachments/assets/cebe0093-665d-4adf-abb4-446c60c68cbd)
+
+### 52 minutes:
+I set up Rhasspy. After a lot of trouble with the setup, I managed to get it to recognize recorded audio. The only thing left to do is get it to work with live audio, as it fails to analyze.
+
+![Imagen de WhatsApp 2025-08-06 a las 22 41 28_4b558003](https://github.com/user-attachments/assets/e120ee2d-2224-471b-8714-19b09b170a90)
+![Video de WhatsApp 2025-08-06 a las 22 41 52_cf10b836](https://github.com/user-attachments/assets/e81e48fa-2164-4f71-b81e-a9265b1755ca)
