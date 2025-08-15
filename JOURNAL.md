@@ -257,3 +257,11 @@ I set up Rhasspy. After a lot of trouble with the setup, I managed to get it to 
 ![Video de WhatsApp 2025-08-06 a las 22 41 52_cf10b836](https://github.com/user-attachments/assets/e81e48fa-2164-4f71-b81e-a9265b1755ca)
 
 <img width="500" src="https://github.com/user-attachments/assets/27ecd006-3b5c-4bc8-932b-f5be05b03387" />
+
+## **Day 8: Changes**
+Even though I was working for several more days, I decided not to time it, so I would just notify you when I made progress.
+First, I solved the problem that kept me from accessing the web interface. The problem was that that port was already in use, which is why it wouldn't let me in.
+On the other hand, I spent several days trying to read intents using internal MQTT, but after reading a little more, I realized that for what I wanted to achieve, using HTTP and WebSocket is a much simpler connection and serves what I wanted to achieve without the need for a very complex configuration.
+
+Today I managed to send an intent from the terminal and react to it. When asked what time it is, the program returns the current time. These are the two programs.
+So today I hope to continue putting everything together to make it work. 😀
