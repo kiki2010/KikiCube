@@ -1,0 +1,110 @@
+''' 
+18/08/2025
+Chiara Catalini
+This is a small test to control GPIO pins using voice commands and a Bluetooth controller.
+'''
+import RPi.GPIO as GPIO
+from evdev import InputDevice, categorize, ecodes, list_devices
+import asyncio
+import websockets
+import json
+import time
+import requests
+
+# GPIO Setup
+GPIO.setmode(GPIO.BCM)
+
+m1a = 17
+m2a = 27
+m1b = 22
+m2b = 23
+
+led1 = 24
+led2 = 25
+
+GPIO.setup(m1a, GPIO.OUT)
+GPIO.setup(m2a, GPIO.OUT)
+GPIO.setup(m1b, GPIO.OUT)
+GPIO.setup(m2b, GPIO.OUT)
+GPIO.setup(led1, GPIO.OUT)
+GPIO.setup(led2, GPIO.OUT)
+
+GPIO.output(m1a, False)
+GPIO.output(m2a, False)
+GPIO.output(m1b, False)
+GPIO.output(m2b, False)
+GPIO.output(led1, False)
+GPIO.output(led2, False)
+
+# Motor Funtions
+def stopped():
+    GPIO.output(m1a, False)
+    GPIO.output(m2a, False)
+    GPIO.output(m1b, False)
+    GPIO.output(m2b, False)
+
+def forward():
+    GPIO.output(m1a, True)
+    GPIO.output(m2a, False)
+    GPIO.output(m1b, True)
+    GPIO.output(m2b, False)
+
+def backward():
+    GPIO.output(m1a, False)
+    GPIO.output(m2a, True)
+    GPIO.output(m1b, False)
+    GPIO.output(m2b, True)
+
+def left():
+    GPIO.output(m1a, False)
+    GPIO.output(m2a, False)
+    GPIO.output(m1b, True)
+    GPIO.output(m2b, False)
+
+def right():
+    GPIO.output(m1a, True)
+    GPIO.output(m2a, False)
+    GPIO.output(m1b, False)
+    GPIO.output(m2b, False)
+
+def LED1on():
+    GPIO.output(led1, True)
+
+def LED1off():
+    GPIO.output(led1, False)
+
+def sendWhatTime():
+    Rhasspy_URL = "http://localhost:12101/api/text-to-intent"
+    text = "what time is it"
+    response = requests.post(Rhasspy_URL, data=text.encode("utf-8"))
+    print(response.json())
+
+
+# Bluetooth Control
+def gamepad_loop():
+    gamepad = InputDevice('/dev/input/event15')
+    for event in gamepad.read_loop():
+        if event.type == ecodes.EV_ABS:
+            stopped()
+
+            if event.code == ecodes.ABS_Y:
+                if event.value < 128:
+                    forward()
+                elif event.value > 128:
+                    backward()
+            
+            if event.code == ecodes.ABS_X:
+                if event.value < 128:
+                    left()
+                elif event.value > 128:
+                    right()
+
+        elif event.type == ecodes.EV_KEY:
+            if event.code == 304:
+                if event.value == 1:
+                    LED1on()
+                    sendWhatTime()
+                if event.value == 0:
+                    LED1off()
+
+# Voice Control
