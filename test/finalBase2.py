@@ -115,7 +115,7 @@ async def voice_control():
     while True:
         try:
             async with websockets.connect(rhasspy_ws) as websocket:
-                for message in websocket:
+                async for message in websocket:
                     data = json.loads(message)
                     intent_name = data["intent"]["name"]
                     text = data["text"]
@@ -125,7 +125,7 @@ async def voice_control():
                         time.sleep(2)
                         LED1off()
                     
-                    elif intent_name == 'Forward':
+                    elif intent_name == 'Forwards':
                         forward()
                     
                     elif intent_name == 'Backward':
@@ -139,13 +139,13 @@ async def voice_control():
                     
                     elif intent_name == 'Stopped':
                         stopped()
-                        
+
         except Exception as e:
             print(e)
             await asyncio.sleep(3)
 
 async def main():
-    task_gamepad = asyncio.tothread(gamepad_loop)
+    task_gamepad = asyncio.to_thread(gamepad_loop)
     task_voice = voice_control()
     await asyncio.gather(task_gamepad, task_voice)
 
