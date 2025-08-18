@@ -124,7 +124,22 @@ async def voice_control():
                         LED1on()
                         time.sleep(2)
                         LED1off()
-        
+                    
+                    elif intent_name == 'Forward':
+                        forward()
+                    
+                    elif intent_name == 'Backward':
+                        backward()
+                    
+                    elif intent_name == 'Left':
+                        left()
+                    
+                    elif intent_name == 'Right':
+                        right()
+                    
+                    elif intent_name == 'Stopped':
+                        stopped()
+                        
         except Exception as e:
             print(e)
             await asyncio.sleep(3)
