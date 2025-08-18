@@ -20,7 +20,7 @@ async def listen_intent():
                     text = data["text"]
                     print(f"intent: {intent_name} | text: {text}")
 
-                    if intent_name == 'GetName':
+                    if intent_name == 'GetTime':
                         now = datetime.now().strftime("%H:%M:%S")
                         print(f"The time is {now}")
 
