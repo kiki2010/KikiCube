@@ -285,3 +285,7 @@ I put the motors in position and assembled the structure of the 3D print. In the
 ### 51 minutes later
 I joined the 3D printed base with the acrylic, leaving a space to pass the battery that will be used to power the motors, I also cut the acrylic to the correct size.
 <img width="500" src="https://github.com/user-attachments/assets/9c75c3eb-bddb-418b-bded-88fd5e9c516c" />
+
+> [!NOTE]
+> Time really flew by doing this 😭
+> I couldn't believe it was already dark 🌙
