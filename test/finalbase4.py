@@ -91,7 +91,7 @@ def gamepad_loop():
 
     for event in gamepad.read_loop():
         if event.type == ecodes.EV_ABS:
-            print("joysitck moved")
+            print(f"X: {x_joystick} Y: {y_joystick}")
             if event.code == ecodes.ABS_Y:
                 y_joystick = event.value
             if event.code == ecodes.ABS_X:
