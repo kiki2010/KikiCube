@@ -84,11 +84,11 @@ def sendWhatTime():
 CENTER = 68
 DEADZONE = 5
 
-x_joystick = CENTER
-y_joystick = CENTER
-
 def gamepad_loop():
     gamepad = InputDevice('/dev/input/event15')
+    x_joystick = CENTER
+    y_joystick = CENTER
+
     for event in gamepad.read_loop():
         if event.type == ecodes.EV_ABS:
             print("joysitck moved")
