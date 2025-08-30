@@ -12,6 +12,7 @@ import time
 import requests
 
 # GPIO Setup
+
 GPIO.setmode(GPIO.BCM)
 
 m1a = 17
@@ -79,41 +80,44 @@ def sendWhatTime():
     response = requests.post(Rhasspy_URL, data=text.encode("utf-8"))
     print(response.json())
 
+def listenIntent():
+    try:
+        url = "http://localhost:12101/api/listen-for-command"
+        requests.post(url)
+        print("Listening")
+    except Exception as e:
+        print(f"error {e}")
+
 
 # Bluetooth Control
-CENTER = 68
-DEADZONE = 5
 
 def gamepad_loop():
     gamepad = InputDevice('/dev/input/event15')
     for event in gamepad.read_loop():
         if event.type == ecodes.EV_ABS:
+            stopped()
 
             if event.code == ecodes.ABS_Y:
-                if event.value < CENTER - DEADZONE:
+                if event.value < 128:
                     forward()
-                elif event.value > CENTER - DEADZONE:
+                elif event.value > 128:
                     backward()
-                else:
-                    stopped()
             
             if event.code == ecodes.ABS_X:
-                if event.value < CENTER - DEADZONE:
+                if event.value < 128:
                     left()
-                elif event.value > CENTER - DEADZONE:
+                elif event.value > 128:
                     right()
-                else:
-                    stopped()
 
         elif event.type == ecodes.EV_KEY:
             if event.code == 304:
                 if event.value == 1:
                     LED1on()
-                    sendWhatTime()
+                    listenIntent()
                 if event.value == 0:
                     LED1off()
 
-# Voice Control
+# Voice Control (react to intents)
 
 rhasspy_ws = "ws://localhost:12101/api/events/intent"
 
