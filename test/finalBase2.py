@@ -92,7 +92,7 @@ def gamepad_loop():
             if event.code == ecodes.ABS_Y:
                 if event.value < CENTER - DEADZONE:
                     forward()
-                elif event.value > CENTER - DEADZONE:
+                elif event.value > CENTER + DEADZONE:
                     backward()
                 else:
                     stopped()
@@ -100,7 +100,7 @@ def gamepad_loop():
             if event.code == ecodes.ABS_X:
                 if event.value < CENTER - DEADZONE:
                     left()
-                elif event.value > CENTER - DEADZONE:
+                elif event.value > CENTER + DEADZONE:
                     right()
                 else:
                     stopped()
