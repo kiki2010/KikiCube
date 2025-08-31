@@ -314,6 +314,8 @@ So today I hope to continue putting everything together to make it work. 😀
 I sent a 3D model for the base of my robot to be printed. As it is inspired by a cubesat, I looked for a free-to-use model on Thingverse. This is the link: 
 
 <a href="https://www.thingiverse.com/thing:4096437#Summary">Universal 1U Cubesat by Juliano85</a>
+
+
 <img width="500" src="https://github.com/user-attachments/assets/ed8dcbdd-16c2-47c5-9c22-3df4bbc2249e" />
 
 ### First 1 hour 40 minutes
