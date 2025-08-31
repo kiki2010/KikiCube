@@ -289,3 +289,47 @@ I joined the 3D printed base with the acrylic, leaving a space to pass the batte
 > [!NOTE]
 > Time really flew by doing this 😭
 > I couldn't believe it was already dark 🌙
+
+## **Day 10: **
+Today I managed to finish the base, and finally test the engine control.
+
+### 1 hour:
+Connection diagram ready 😀😃
+I found the necessary materials and attached the H bridge to the motor base 🤖
+
+<img width="500" src="https://github.com/user-attachments/assets/5d1e90ed-18a2-4d4d-b98c-ad6e22e01bad" />
+![time day 10, first section](https://github.com/user-attachments/assets/ebdeb779-e391-40d6-819e-b1e8d12d5d5f)
+<img width="500" src="https://github.com/user-attachments/assets/d7dc3cb0-66d7-4788-9179-e601f5573139" />
+<img height="500" src="https://github.com/user-attachments/assets/5b8ff51e-0f10-4098-b78d-a2608685d68c" />
+> Photos taken at 4 p.m. on 08/30
+
+### 1 hour:
+Adapt female connectors for the robot.
+Especially for recycling components and make it completely custom 😎.
+
+<img width="500" src="https://github.com/user-attachments/assets/74f8e89e-364f-4ab7-85f7-9263ea8c9c7c" />
+> Photo taken at 5 p.m on 08/30
+
+> [!NOTE]
+> I always try to add recycled components in my projects ♻️
+> Obviously, I adapt them 😎
+
+### 1 hour:
+Finished cable adapted for H-bridge inputs, cables soldered to the motors.
+
+<img width="500" src="https://github.com/user-attachments/assets/9c06baa7-b14b-4442-b1c7-79ad02f9be03" />
+> Photo taken at 6:43 p.m on 08/30
+
+### 1 hour: 
+Added a button and adapted connectors for the battery (7.3V, also recycled and adapted from an old laptop). All that's left is to put everything together and test it.
+
+<img width="500" src="https://github.com/user-attachments/assets/27d81c6c-65d3-428e-8e96-507eabe71d86" />
+<img width="500" src="https://github.com/user-attachments/assets/e4bf36f3-c850-45dd-9585-ccdb4ef75592" />
+<img height="500" src="https://github.com/user-attachments/assets/51aedf72-a71b-42e9-8aaa-f1ca5f611d85" />
+> Photo taken at 7:45 p.m on 08/30
+
+### 45 minutes:
+Everything's assembled and tested. I'll continue working on the code.
+
+![test, video listo](https://github.com/user-attachments/assets/fccf28da-cf9d-4224-b245-9e7a96fae811)
+> Video recorded at 9:38 p.m on 08/30
