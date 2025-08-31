@@ -81,8 +81,8 @@ def sendWhatTime():
 
 
 # Bluetooth Control
-CENTER = 68
-DEADZONE = 5
+CENTER = 128
+DEADZONE = 10
 
 def gamepad_loop():
     gamepad = InputDevice('/dev/input/event15')
