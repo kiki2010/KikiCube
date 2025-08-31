@@ -1,5 +1,26 @@
 # **KikiCube**
+## **Total time: 16 hours 50 minutes**
+
 [![Athena Award Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Faward.athena.hackclub.com%2Fapi%2Fbadge)](https://award.athena.hackclub.com?utm_source=readme)
+
+Time per day:
+| Day | Sections | Hours |
+| [1](#day-1-1-hour-and-one-minute) | 1 | 1 hour and 1 minute |
+| [2](#day-2-1-hour) | 2 | 1 hour |
+| [3](#day-3-1-hour-48-minutes) | 2 | 1 hour 48 minutes |
+| [4](#day-4-1-hour-1-minute) | 1 | 1 hour 1 minute |
+| [5](#day-5-1-hour-19-minutes) | 1 | 1 hour 19 minutes |
+| [6](#day-6-2-hours) | 2 | 2 hours |
+| [7](#day-7-1-hour-32-minutes) | 2 | 1 hour 32 minutes |
+| [8](#day-8-changes) | - | Not timed. But a summary and clarification is given |
+| [9](#day-9-3-hours-24-minutes) | 3 | 3 hours 24 minutes |
+| [10](#day-10-4-hours-and-45-minutes) | 5 | 4 hours and 45 minutes |
+
+Final Time:
+| Activity | Days | minutes | hours |
+| Test and SetUp | Days 1, 2, 3, 4, 5, 6, 7, 8  | 581 | 9 hours 41 minutes |
+| Assembly | Days 8, 9, 10 | 489 | 8 hours 9 minutes |
+
 
 ## **Day 1: 1 hour and one minute**
 Today I experimented with the use and resistance of the H-bridge I'll be using in this project.
@@ -290,7 +311,7 @@ I joined the 3D printed base with the acrylic, leaving a space to pass the batte
 > Time really flew by doing this 😭
 > I couldn't believe it was already dark 🌙
 
-## **Day 10: **
+## **Day 10: 4 hours and 45 minutes**
 Today I managed to finish the base, and finally test the engine control.
 
 ### 1 hour:
