@@ -312,22 +312,26 @@ So today I hope to continue putting everything together to make it work. 😀
 
 ## **Day 9: 3 hours 24 minutes**
 I sent a 3D model for the base of my robot to be printed. As it is inspired by a cubesat, I looked for a free-to-use model on Thingverse. This is the link: 
+
 <a href="https://www.thingiverse.com/thing:4096437#Summary">Universal 1U Cubesat by Juliano85</a>
 <img width="500" src="https://github.com/user-attachments/assets/ed8dcbdd-16c2-47c5-9c22-3df4bbc2249e" />
 
 ### First 1 hour 40 minutes
 I looked through my materials for everything I needed to assemble it. I looked for the best screws, nuts, and acrylic robot bases.
 So I spent this first hour and forty minutes looking for everything I needed and preparing everything to build the base.
+
 <img width="500" src="https://github.com/user-attachments/assets/0a9bed40-c861-4f34-ab58-964bed2f7224" />
 
 ### 53 minutes later
 I put the motors in position and assembled the structure of the 3D print. In the image, it is presented on the acrylic base that I will adapt to make it more stable.
+
 <img width="500" src="https://github.com/user-attachments/assets/552493b2-91ce-4286-9c0f-5a109636fa08" />
 <img width="500" src="https://github.com/user-attachments/assets/dad0f719-d2f1-408c-abd5-91da729d9c5f" />
 <img width="500" src="https://github.com/user-attachments/assets/dc153fb7-6cf2-4aec-aa5f-5ff66d257108" />
 
 ### 51 minutes later
 I joined the 3D printed base with the acrylic, leaving a space to pass the battery that will be used to power the motors, I also cut the acrylic to the correct size.
+
 <img width="500" src="https://github.com/user-attachments/assets/9c75c3eb-bddb-418b-bded-88fd5e9c516c" />
 
 > [!NOTE]
@@ -344,9 +348,9 @@ Connection diagram ready 😀😃
 I found the necessary materials and attached the H bridge to the motor base 🤖
 
 <img width="500" src="https://github.com/user-attachments/assets/5d1e90ed-18a2-4d4d-b98c-ad6e22e01bad" />
-![time day 10, first section](https://github.com/user-attachments/assets/ebdeb779-e391-40d6-819e-b1e8d12d5d5f)
 <img width="500" src="https://github.com/user-attachments/assets/d7dc3cb0-66d7-4788-9179-e601f5573139" />
 <img height="500" src="https://github.com/user-attachments/assets/5b8ff51e-0f10-4098-b78d-a2608685d68c" />
+<img height="500" src="https://github.com/user-attachments/assets/ebdeb779-e391-40d6-819e-b1e8d12d5d5f" />
 
 > Photos taken at 4 p.m. on 08/30
 
