@@ -1,5 +1,5 @@
 ''' 
-18/08/2025
+01/09/2025
 Chiara Catalini
 This is a small test to control GPIO pins using voice commands and a Bluetooth controller.
 '''
@@ -10,9 +10,11 @@ import websockets
 import json
 import time
 import requests
+import eventlet
+
+eventlet.monkey_patch()
 
 # GPIO Setup
-
 GPIO.setmode(GPIO.BCM)
 
 m1a = 17
@@ -80,44 +82,44 @@ def sendWhatTime():
     response = requests.post(Rhasspy_URL, data=text.encode("utf-8"))
     print(response.json())
 
-def listenIntent():
-    try:
-        url = "http://localhost:12101/api/listen-for-command"
-        requests.post(url)
-        print("Listening")
-    except Exception as e:
-        print(f"error {e}")
-
 
 # Bluetooth Control
+CENTER = 128
+DEADZONE = 10
 
 def gamepad_loop():
     gamepad = InputDevice('/dev/input/event15')
+    x_joystick = CENTER
+    y_joystick = CENTER
+
     for event in gamepad.read_loop():
         if event.type == ecodes.EV_ABS:
-            stopped()
-
+            print(f"X: {x_joystick} Y: {y_joystick}")
             if event.code == ecodes.ABS_Y:
-                if event.value < 128:
-                    forward()
-                elif event.value > 128:
-                    backward()
-            
+                y_joystick = event.value
             if event.code == ecodes.ABS_X:
-                if event.value < 128:
-                    left()
-                elif event.value > 128:
-                    right()
+                x_joystick = event.value
+            
+            if y_joystick < CENTER - DEADZONE:
+                forward()
+            elif y_joystick > CENTER + DEADZONE:
+                backward()
+            elif x_joystick < CENTER - DEADZONE:
+                left()
+            elif x_joystick > CENTER + DEADZONE:
+                right()
+            else:
+                stopped()
 
         elif event.type == ecodes.EV_KEY:
             if event.code == 304:
                 if event.value == 1:
                     LED1on()
-                    listenIntent()
+                    sendWhatTime()
                 if event.value == 0:
                     LED1off()
 
-# Voice Control (react to intents)
+# Voice Control
 
 rhasspy_ws = "ws://localhost:12101/api/events/intent"
 
@@ -153,6 +155,9 @@ async def voice_control():
         except Exception as e:
             print(e)
             await asyncio.sleep(3)
+
+# Camera:
+
 
 async def main():
     task_gamepad = asyncio.to_thread(gamepad_loop)
