@@ -86,3 +86,14 @@ def gamepad_loop():
 
 # Voice Control
 # Camera
+
+# Main
+async def main():
+    task_gamepad = asyncio.to_thread(gamepad_loop)
+    await asyncio.gather(task_gamepad)
+
+try:
+    asyncio.run(main())
+except KeyboardInterrupt:
+    GPIO.cleanup()
+    print('Kiki Saludos :)')
