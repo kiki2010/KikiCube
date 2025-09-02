@@ -4,6 +4,8 @@ Chiara Catalini
 Base using Bluetooth controller, voice control and a camera, because in this way is more cooler
 '''
 import RPi.GPIO as GPIO
+from evdev import InputDevice, categorize, ecodes, list_devices
+import asyncio
 
 # GPIO Setup
 GPIO.setmode(GPIO.BCM)
@@ -55,5 +57,32 @@ def right():
     GPIO.output(m2b, False)
 
 # Bluetooth Control
+CENTER = 128
+DEADZONE = 10
+
+def gamepad_loop():
+    gamepad = InputDevice('/dev/input/event14')
+    x_joystick = CENTER
+    y_joystick = CENTER
+
+    for event in gamepad.read_loop():
+        if event.type == ecodes.EV_ABS:
+            print(f'X: {x_joystick}, Y: {y_joystick}')
+            if event.code == ecodes.ABS_Y:
+                x_joystick = event.value
+            if event.code == ecodes.ABS_X:
+                y_joystick = event.value
+            
+            if y_joystick < CENTER - DEADZONE:
+                forward()
+            elif y_joystick > CENTER - DEADZONE:
+                backward()
+            elif x_joystick < CENTER - DEADZONE:
+                left()
+            elif x_joystick > CENTER - DEADZONE:
+                right()
+            else:
+                stopped()
+
 # Voice Control
 # Camera
