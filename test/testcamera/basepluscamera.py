@@ -187,13 +187,39 @@ def capture_frames():
 def index():
     return render_template('index.html')
 
+@app.route('/snapshot')
+def snapshot():
+    success, frame = camera.read()
+    if not success:
+        return jsonfy({'error': 'no frame'}), 500
+    ret, buffer = cv2.imencode('jpg', frame, [int(cv2.cv2.IMWRITE_JPEG_QUEALITY), 60])
+    return Response(buffer.tobytes(), mimetype='image/jpeg')
+
+@socketio.on('connect')
+def handle_connect():
+    global thread_camera
+    print("Connected client")
+    with thread_lock:
+        if thread_camera is None:
+            thread_camera = threading.Thread(target=capture_frames, daemon=True)
+            thread_camera.start()
+            print("Camera thread started")
+
+@socketio.on('disconnect')
+def handle_disconnect():
+    print("disconnected")
+
 async def main():
     task_gamepad = asyncio.to_thread(gamepad_loop)
     task_voice = voice_control()
     await asyncio.gather(task_gamepad, task_voice)
 
-try:
-    asyncio.run(main())
-except KeyboardInterrupt:
-    GPIO.cleanup()
-    print("Bye :(")
+if __name__ == '__main__':
+    try:
+        loop = asyncio.get_event_loop()
+        loop.create_task(main())
+        socketio.run(app, host='0.0.0.0', port=5000, debug=False)
+    finally:
+        print('cleaning GPIO and Camera')
+        GPIO.cleanup()
+        camera.release()
