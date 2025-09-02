@@ -2,6 +2,7 @@
 01/09/2025
 Chiara Catalini
 This is a small test to control GPIO pins using voice commands and a Bluetooth controller.
+Something is wrong
 '''
 import RPi.GPIO as GPIO
 from evdev import InputDevice, categorize, ecodes, list_devices
