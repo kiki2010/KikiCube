@@ -10,9 +10,11 @@ import websockets
 import json
 import time
 import requests
-import eventlet
-
-eventlet.monkey_patch()
+import base64
+import cv2
+import threading
+from flask import Flask, render_template, Response, jsonfy
+from flask_socketio import SocketIO
 
 # GPIO Setup
 GPIO.setmode(GPIO.BCM)
@@ -156,8 +158,34 @@ async def voice_control():
             print(e)
             await asyncio.sleep(3)
 
-# Camera:
+# Camera SetUp
+camera = cv2.VideoCapture(0)
+camera.set(cv2.CAP_DROP_FRAME_WIDTH, 320)
+camera.set(cv2.CAP_DROP_FRAME_HEIGHT, 240)
+camera.set(cv2.CAP_PROP_FPS, 15)
 
+thread_camera = None
+thread_lock = threading.Lock()
+
+# Stream and capture
+def capture_frames():
+    print("capture started")
+    while True:
+        success, frame = camera.read()
+        if not success:
+            time.sleep(0.1)
+            continue
+        ret, buffer = cv2.imencode('.jpg', frame, [int(cv2.IMWRITE_JPEG_QUEALITY), 60])
+        if not ret:
+            time.sleep(0.05)
+            continue
+        jpg_as_text = base64.b64encode(buffer).decode('utf-8')
+        socketio.emit('video_frame', jpg_as_text)
+        time.sleep(0.05)
+
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 async def main():
     task_gamepad = asyncio.to_thread(gamepad_loop)
