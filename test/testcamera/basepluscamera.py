@@ -13,7 +13,7 @@ import requests
 import base64
 import cv2
 import threading
-from flask import Flask, render_template, Response, jsonfy
+from flask import Flask, render_template
 from flask_socketio import SocketIO
 
 # GPIO Setup
@@ -160,8 +160,8 @@ async def voice_control():
 
 # Camera SetUp
 camera = cv2.VideoCapture(0)
-camera.set(cv2.CAP_DROP_FRAME_WIDTH, 320)
-camera.set(cv2.CAP_DROP_FRAME_HEIGHT, 240)
+camera.set(cv2.CAP_PROP_FRAME_WIDTH, 320)
+camera.set(cv2.CAP_PROP_FRAME_HEIGHT, 240)
 camera.set(cv2.CAP_PROP_FPS, 15)
 
 thread_camera = None
