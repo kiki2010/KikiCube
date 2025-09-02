@@ -19,4 +19,3 @@ fullscreenBtn.addEventListener('click', () => {
         img.requestFullscreen();
     }
 });
-
