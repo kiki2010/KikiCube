@@ -9,7 +9,7 @@ import threading
 
 from motor import setUp
 from bt_control import gamepad_loop
-from voice_control import voice_control
+from voice_control import voice_loop
 from app import socketio, app
 
 def run_web():
@@ -17,7 +17,7 @@ def run_web():
 
 async def main():
     task_gamepad = asyncio.to_thread(gamepad_loop)
-    task_voice = voice_control()
+    task_voice = voice_loop()
     await asyncio.gather(task_gamepad, task_voice)
 
 if __name__ == '__main__':

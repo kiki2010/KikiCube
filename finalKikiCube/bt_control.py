@@ -20,17 +20,17 @@ def gamepad_loop():
         if event.type == ecodes.EV_ABS:
             print(f'X: {x_joystick}, Y: {y_joystick}')
             if event.code == ecodes.ABS_Y:
-                x_joystick = event.value
-            if event.code == ecodes.ABS_X:
                 y_joystick = event.value
+            if event.code == ecodes.ABS_X:
+                x_joystick = event.value
             
             if y_joystick < CENTER - DEADZONE:
                 forward()
-            elif y_joystick > CENTER - DEADZONE:
+            elif y_joystick > CENTER + DEADZONE:
                 backward()
             elif x_joystick < CENTER - DEADZONE:
                 left()
-            elif x_joystick > CENTER - DEADZONE:
+            elif x_joystick > CENTER + DEADZONE:
                 right()
             else:
                 stopped()

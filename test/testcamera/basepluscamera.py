@@ -79,11 +79,11 @@ def gamepad_loop():
             
             if y_joystick < CENTER - DEADZONE:
                 forward()
-            elif y_joystick > CENTER - DEADZONE:
+            elif y_joystick > CENTER + DEADZONE:
                 backward()
             elif x_joystick < CENTER - DEADZONE:
                 left()
-            elif x_joystick > CENTER - DEADZONE:
+            elif x_joystick > CENTER + DEADZONE:
                 right()
             else:
                 stopped()
@@ -120,6 +120,7 @@ async def voice_control():
             await asyncio.sleep(3)
 
 # Camera
+
 
 # Main
 async def main():

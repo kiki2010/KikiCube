@@ -4,16 +4,15 @@ Chiara Catalini
 Motor control and setup
 '''
 import RPi.GPIO as GPIO
+#Pin numbers
+m1a = 17
+m2a = 27
+m1b = 22
+m2b = 23
 
 # GPIO Setup
 def setUp():
     GPIO.setmode(GPIO.BCM)
-    
-    #Pin numbers
-    m1a = 17
-    m2a = 27
-    m1b = 22
-    m2b = 23
 
     #All outputs
     GPIO.setup(m1a, GPIO.OUT)
