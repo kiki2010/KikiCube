@@ -6,6 +6,10 @@ Base using Bluetooth controller, voice control and a camera, because in this way
 import RPi.GPIO as GPIO
 from evdev import InputDevice, categorize, ecodes, list_devices
 import asyncio
+import websockets
+import json
+import time
+import requests
 
 # GPIO Setup
 GPIO.setmode(GPIO.BCM)
@@ -85,12 +89,43 @@ def gamepad_loop():
                 stopped()
 
 # Voice Control
+rhasspy_ws = 'ws://localhost:12101/api/events/intent'
+
+async def voice_control():
+    while True:
+        try:
+            async with websockets.connect(rhasspy_ws) as websocket:
+                async for message in websocket:
+                    data = json.loads(message)
+                    intent_name = data['intent']['name']
+                    text = data['text']
+
+                    if intent_name == 'Forwards':
+                        forward()
+                    
+                    elif intent_name == 'Backward':
+                        backward()
+                    
+                    elif intent_name == 'Left':
+                        left()
+                    
+                    elif intent_name == 'Right':
+                        right()
+                    
+                    elif intent_name == 'Stopped':
+                        stopped()
+
+        except Exception as e:
+            print(e)
+            await asyncio.sleep(3)
+
 # Camera
 
 # Main
 async def main():
     task_gamepad = asyncio.to_thread(gamepad_loop)
-    await asyncio.gather(task_gamepad)
+    task_voice = voice_control()
+    await asyncio.gather(task_gamepad, task_voice)
 
 try:
     asyncio.run(main())
