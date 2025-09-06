@@ -5,6 +5,7 @@ import espeakng
 import subprocess
 import os
 import time
+import signal
 
 audioFile = "audio.wav"
 rhasspyUrl = "http://localhost:12101/api/speech-to-text"
@@ -57,13 +58,13 @@ def gamepad_loop():
                     print('Starting recording...')
                     proc = subprocess.Popen([
                         "arecord", "-D", mic_device, "-f", "cd",
-                        "-t", "wav", "-r", "16000", audioFile
+                        "-t", "wav", "-r", "16000", "-d", "10", audioFile
                     ])
                     recording = True
                 else:
                     print('Stopping recording...')
                     if proc:
-                        proc.terminate()
+                        proc.send_signal(signal.SIGINT)
                         proc.wait()
                         proc = None
                         time.sleep(0.1)
