@@ -6,15 +6,16 @@ In this test I will try to use voice control to ask thinks to an AI by using oll
 import ollama
 from evdev import InputDevice, categorize, ecodes, list_devices
 import requests
-import pyttsx3
+from espeak import espeak
 import subprocess
 
 audioFile = "audio.wav"
-rhasspyUrl = "https://localhost:12101/api/speech-to-text"
+rhasspyUrl = "http://localhost:12101/api/speech-to-text"
 ollamaModel = "tinyllama"
 buttoncode = 304
 
-engine = pyttsx3.init()
+espeak.set("en")
+espeak.synth('Hi, I am KikiCube')
 
 def audiototext(filename=audioFile):
     with open(filename, "rb") as f:
@@ -32,12 +33,15 @@ def askollama(prompt):
     return response['message']['content']
 
 def hablar(texto):
-    engine.say(texto)
-    engine.runAndWait()
+    espeak.synth(texto)
+    while espeak.isplaying:
+        pass
 
 recording = False
+proc = None
 
 def gamepad_loop():
+    global recording
     gamepad = InputDevice('/dev/input/event14')
 
     for event in gamepad.read_loop():
@@ -52,7 +56,9 @@ def gamepad_loop():
                     recording = True
                 else:
                     print('stopping recording')
-                    proc.terminate
+                    if proc:
+                        proc.terminate()
+                        proc.wait()
                     recording = False
 
                     texto = audiototext()
@@ -61,3 +67,6 @@ def gamepad_loop():
                         answer = askollama(texto)
                         print("ollama", answer)
                         hablar(answer)
+
+if __name__ == "__main__":
+    gamepad_loop()
