@@ -6,7 +6,7 @@ In this test I will try to use voice control to ask thinks to an AI by using oll
 import ollama
 from evdev import InputDevice, categorize, ecodes, list_devices
 import requests
-from espeak import espeak
+import espeakng
 import subprocess
 
 audioFile = "audio.wav"
@@ -14,8 +14,8 @@ rhasspyUrl = "http://localhost:12101/api/speech-to-text"
 ollamaModel = "tinyllama"
 buttoncode = 304
 
-espeak.init()
-speaker = espeak.Espeak()
+speaker = espeakng.ESpeakNG()
+speaker.voice = 'en'
 speaker.say("Hi, I am KikiCube press A to ask for help")
 
 def audiototext(filename=audioFile):
