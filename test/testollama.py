@@ -14,8 +14,9 @@ rhasspyUrl = "http://localhost:12101/api/speech-to-text"
 ollamaModel = "tinyllama"
 buttoncode = 304
 
-espeak.set("en")
-espeak.synth('Hi, I am KikiCube')
+espeak.init()
+speaker = espeak.Espeak()
+speaker.say("Hi, I am KikiCube press A to ask for help")
 
 def audiototext(filename=audioFile):
     with open(filename, "rb") as f:
@@ -33,9 +34,7 @@ def askollama(prompt):
     return response['message']['content']
 
 def hablar(texto):
-    espeak.synth(texto)
-    while espeak.isplaying:
-        pass
+    speaker.say(texto)
 
 recording = False
 proc = None
