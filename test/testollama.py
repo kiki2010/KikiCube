@@ -48,18 +48,7 @@ proc = None
 
 def gamepad_loop():
     global recording, proc
-
-    devices = [InputDevice(path) for path in list_devices()]
-    gamepad = None
-    for dev in devices:
-        if 'joystick' in dev.name.lower() or 'gamepad' in dev.name.lower():
-            gamepad = dev
-            break
-
-    if gamepad is None:
-        raise Exception("No gamepad found.")
-    print(f"Using gamepad: {gamepad.name}")
-    print("Press the A button to start/stop recording.")
+    gamepad = InputDevice('/dev/input/event16')
 
     for event in gamepad.read_loop():
         if event.type == ecodes.EV_KEY:
