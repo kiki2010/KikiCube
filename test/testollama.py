@@ -1,33 +1,40 @@
-'''
-06/09/2025
-Chiara Catalini
-In this test I will try to use voice control to ask thinks to an AI by using ollama and rhasspy
-'''
 import ollama
-from evdev import InputDevice, categorize, ecodes, list_devices
+from evdev import InputDevice, ecodes, list_devices
 import requests
 import espeakng
 import subprocess
+import os
+import time
 
 audioFile = "audio.wav"
 rhasspyUrl = "http://localhost:12101/api/speech-to-text"
 ollamaModel = "tinyllama"
 buttoncode = 304
+mic_device = "plughw:3,0"
 
 speaker = espeakng.ESpeakNG()
 speaker.voice = 'en'
-speaker.say("Hi, I am KikiCube press A to ask for help")
+speaker.speed = 150
+speaker.volume = 100
+speaker.say("Hi, I am KikiCube. Press A to ask for help.")
 
 def audiototext(filename=audioFile):
-    with open(filename, "rb") as f:
-        resp = requests.post(rhasspyUrl, files={"file": f})
-    return resp.text.strip()
+    if not os.path.exists(filename) or os.path.getsize(filename) < 1000:
+        print("Error: audio file too small or does not exist")
+        return ""
+    try:
+        with open(filename, "rb") as f:
+            resp = requests.post(rhasspyUrl, files={"file": f})
+        return resp.text.strip()
+    except requests.RequestException as e:
+        print("Error connecting to Rhasspy:", e)
+        return ""
 
 def askollama(prompt):
     response = ollama.chat(
         model=ollamaModel,
         messages=[
-            {'role': 'system', 'content': 'Voice asistance, called KikiCube, you are on a raspberry pi 4 and you are a robot controled by using python code, a gamepad and voice control'},
+            {'role': 'system', 'content': 'Voice assistant, called KikiCube, you are on a Raspberry Pi 4 and are controlled by Python, a gamepad, and voice.'},
             {'role': 'user', 'content': prompt}
         ]
     )
@@ -40,31 +47,44 @@ recording = False
 proc = None
 
 def gamepad_loop():
-    global recording
-    gamepad = InputDevice('/dev/input/event14')
+    global recording, proc
+
+    devices = [InputDevice(path) for path in list_devices()]
+    gamepad = None
+    for dev in devices:
+        if 'joystick' in dev.name.lower() or 'gamepad' in dev.name.lower():
+            gamepad = dev
+            break
+
+    if gamepad is None:
+        raise Exception("No gamepad found.")
+    print(f"Using gamepad: {gamepad.name}")
+    print("Press the A button to start/stop recording.")
 
     for event in gamepad.read_loop():
         if event.type == ecodes.EV_KEY:
             if event.code == buttoncode and event.value == 1:
                 if not recording:
-                    print('started recording')
+                    print('Starting recording...')
                     proc = subprocess.Popen([
-                        "arecord", "-D", "plughw:3,0", "-f", "cd",
+                        "arecord", "-D", mic_device, "-f", "cd",
                         "-t", "wav", "-r", "16000", audioFile
                     ])
                     recording = True
                 else:
-                    print('stopping recording')
+                    print('Stopping recording...')
                     if proc:
                         proc.terminate()
                         proc.wait()
+                        proc = None
+                        time.sleep(0.1)
                     recording = False
 
                     texto = audiototext()
-                    print('text', texto)
+                    print('Transcription:', texto)
                     if texto:
                         answer = askollama(texto)
-                        print("ollama", answer)
+                        print("Ollama:", answer)
                         hablar(answer)
 
 if __name__ == "__main__":
