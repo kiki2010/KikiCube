@@ -68,6 +68,7 @@ def saveAudio():
     else:
         print('no audio recorded')
 
+audio_thread = None
 
 def gamepad_loop():
     global recording, proc
@@ -76,6 +77,7 @@ def gamepad_loop():
     for event in gamepad.read_loop():
         if event.type == ecodes.EV_KEY:
             if event.code == buttoncode and event.value == 1:
+                global audio_thread, recording
                 if not recording:
                     print('started recording')
                     recording = True
@@ -86,7 +88,8 @@ def gamepad_loop():
                     print('stopping recording')
                     recording = False
                     stop_event.set()
-                    audio_thread.join()
+                    if audio_thread is not None and audio_thread.is_alive():
+                        audio_thread.join() 
                     saveAudio()
 
                     texto = audiototext()
