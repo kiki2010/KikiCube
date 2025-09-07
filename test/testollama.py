@@ -21,13 +21,16 @@ speaker = espeakng.ESpeakNG()
 speaker.voice = 'en'
 speaker.say("Hi, I am KikiCube. Press A to ask for help.")
 
-def audiototext(filename=audioFile):
+def audiototext(filename="audio.wav"):
     if not os.path.exists(filename) or os.path.getsize(filename) < 1000:
         print("Error: audio file too small or does not exist")
         return ""
+
     try:
         with open(filename, "rb") as f:
-            resp = requests.post(rhasspyUrl, files={"file": f})
+            audio_data = f.read()
+        headers = {"Content-Type": "audio/wav"}
+        resp = requests.post(rhasspyUrl, data=audio_data, headers=headers)
         return resp.text.strip()
     except requests.RequestException as e:
         print("Error connecting to Rhasspy:", e)
