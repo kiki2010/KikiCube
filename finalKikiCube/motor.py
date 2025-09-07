@@ -47,15 +47,15 @@ def stopped():
 
 def forward(speed=100):
     pwm_m1a.ChangeDutyCycle(speed)
-    pwm_m2a.ChangeDutyCycle(speed)
+    pwm_m2a.ChangeDutyCycle(0)
     pwm_m1b.ChangeDutyCycle(0)
-    pwm_m2b.ChangeDutyCycle(0)
+    pwm_m2b.ChangeDutyCycle(speed)
 
 def backward(speed=100):
     pwm_m1a.ChangeDutyCycle(0)
-    pwm_m2a.ChangeDutyCycle(0)
+    pwm_m2a.ChangeDutyCycle(speed)
     pwm_m1b.ChangeDutyCycle(speed)
-    pwm_m2b.ChangeDutyCycle(speed)
+    pwm_m2b.ChangeDutyCycle(0)
 
 def left(speed=100):
     pwm_m1a.ChangeDutyCycle(0)
@@ -64,7 +64,7 @@ def left(speed=100):
     pwm_m2b.ChangeDutyCycle(0)
 
 def right(speed=100):
-    pwm_m1a.ChangeDutyCycle(0)
-    pwm_m2a.ChangeDutyCycle(speed)
+    pwm_m1a.ChangeDutyCycle(speed)
+    pwm_m2a.ChangeDutyCycle(0)
     pwm_m1b.ChangeDutyCycle(0)
     pwm_m2b.ChangeDutyCycle(0)
