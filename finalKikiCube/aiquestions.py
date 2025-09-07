@@ -96,7 +96,6 @@ def saveAudio():
 def handleRecording():
     global recording
     if not recording:
-        speak('Ready for helping')
         print('started recording')
         recording = True
         stop_event.clear()
