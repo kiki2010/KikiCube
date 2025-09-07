@@ -7,7 +7,7 @@ from evdev import InputDevice, categorize, ecodes, list_devices
 import asyncio
 import threading
 
-from motor import setUp
+from motor import setUp, stopped
 from bt_control import gamepad_loop
 from voice_control import voice_loop
 from app import socketio, app
@@ -29,4 +29,5 @@ if __name__ == '__main__':
         asyncio.run(main())
     except KeyboardInterrupt:
         GPIO.cleanup()
+        stopped()
         print('Kiki Saludos :)')

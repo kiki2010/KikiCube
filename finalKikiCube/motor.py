@@ -46,25 +46,25 @@ def stopped():
         pwm.ChangeDutyCycle(0)
 
 def forward(speed=100):
-    pwm_m1a = GPIO.PWM(m1a, speed)
-    pwm_m2a = GPIO.PWM(m2a, 0)
-    pwm_m1b = GPIO.PWM(m1b, speed)
-    pwm_m2b = GPIO.PWM(m2b, 0)
+    pwm_m1a.ChangeDutyCycle(speed)
+    pwm_m2a.ChangeDutyCycle(0)
+    pwm_m1b.ChangeDutyCycle(speed)
+    pwm_m2b.ChangeDutyCycle(0)
 
 def backward(speed=100):
-    pwm_m1a = GPIO.PWM(m1a, 0)
-    pwm_m2a = GPIO.PWM(m2a, speed)
-    pwm_m1b = GPIO.PWM(m1b, 0)
-    pwm_m2b = GPIO.PWM(m2b, speed)
+    pwm_m1a.ChangeDutyCycle(0)
+    pwm_m2a.ChangeDutyCycle(speed)
+    pwm_m1b.ChangeDutyCycle(0)
+    pwm_m2b.ChangeDutyCycle(speed)
 
 def left(speed=100):
-    pwm_m1a = GPIO.PWM(m1a, 0)
-    pwm_m2a = GPIO.PWM(m2a, 0)
-    pwm_m1b = GPIO.PWM(m1b, speed)
-    pwm_m2b = GPIO.PWM(m2b, 0)
+    pwm_m1a.ChangeDutyCycle(0)
+    pwm_m2a.ChangeDutyCycle(0)
+    pwm_m1b.ChangeDutyCycle(speed)
+    pwm_m2b.ChangeDutyCycle(0)
 
 def right(speed=100):
-    pwm_m1a = GPIO.PWM(m1a, speed)
-    pwm_m2a = GPIO.PWM(m2a, 0)
-    pwm_m1b = GPIO.PWM(m1b, 0)
-    pwm_m2b = GPIO.PWM(m2b, 0)
+    pwm_m1a.ChangeDutyCycle(speed)
+    pwm_m2a.ChangeDutyCycle(0)
+    pwm_m1b.ChangeDutyCycle(0)
+    pwm_m2b.ChangeDutyCycle(0)
