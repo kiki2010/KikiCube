@@ -2,10 +2,12 @@ import ollama
 from evdev import InputDevice, ecodes, list_devices
 import requests
 import espeakng
-import subprocess
+import sounddevice as sd
+import soundfile as sf
+import numpy as np
+import threading
 import os
 import time
-import signal
 
 audioFile = "audio.wav"
 rhasspyUrl = "http://localhost:12101/api/speech-to-text"
@@ -13,10 +15,10 @@ ollamaModel = "tinyllama"
 buttoncode = 304
 mic_device = "plughw:3,0"
 
+stop_event = threading.Event()
+
 speaker = espeakng.ESpeakNG()
 speaker.voice = 'en'
-speaker.speed = 150
-speaker.volume = 100
 speaker.say("Hi, I am KikiCube. Press A to ask for help.")
 
 def audiototext(filename=audioFile):
@@ -46,6 +48,26 @@ def hablar(texto):
 
 recording = False
 proc = None
+frames = []
+
+def recordAudio():
+    global frames, recording
+    frames = []
+    def callback(indata, frames_count, time_info, status):
+        if recording:
+            frames.append(indata.copy())
+        
+    with sd.InputStream(channels=1, samplerate=16000, callback=callback):
+        while recording:
+            stop_event.wait()
+    
+def saveAudio():
+    if frames:
+        data = np.concatenate(frames, axis=0)
+        sf.write(audioFile, data, 16000)
+    else:
+        print('no audio recorded')
+
 
 def gamepad_loop():
     global recording, proc
@@ -55,23 +77,20 @@ def gamepad_loop():
         if event.type == ecodes.EV_KEY:
             if event.code == buttoncode and event.value == 1:
                 if not recording:
-                    print('Starting recording...')
-                    proc = subprocess.Popen([
-                        "arecord", "-D", mic_device, "-f", "cd",
-                        "-t", "wav", "-r", "16000", "-d", "10", audioFile
-                    ])
+                    print('started recording')
                     recording = True
+                    stop_event.clear()
+                    audio_thread = threading.Thread(target=recordAudio)
+                    saveAudio()
                 else:
-                    print('Stopping recording...')
-                    if proc:
-                        proc.send_signal(signal.SIGINT)
-                        proc.wait()
-                        proc = None
-                        time.sleep(0.1)
+                    print('stopping recording')
                     recording = False
+                    stop_event.set()
+                    audio_thread.join()
+                    saveAudio()
 
                     texto = audiototext()
-                    print('Transcription:', texto)
+                    print("Transcription:", texto)
                     if texto:
                         answer = askollama(texto)
                         print("Ollama:", answer)
