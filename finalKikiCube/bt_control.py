@@ -12,6 +12,13 @@ import threading
 CENTER = 128
 DEADZONE = 10
 
+def map_speed(value):
+    diff = value - CENTER
+    if abs(diff) < DEADZONE:
+        return 0
+    
+    return int(min(abs(diff) / 127 * 100, 100))
+
 def gamepad_loop():
     gamepad = InputDevice('/dev/input/event14')
     x_joystick = CENTER
@@ -25,19 +32,22 @@ def gamepad_loop():
                 y_joystick = event.value
             if event.code == ecodes.ABS_X:
                 x_joystick = event.value
+
+            speed_y = map_speed(y_joystick)
+            speed_x = map_speed(x_joystick)
             
             if y_joystick < CENTER - DEADZONE:
                 print('moving Foward')
-                forward()
+                forward(speed_y)
             elif y_joystick > CENTER + DEADZONE:
                 print('moving Backward')
-                backward()
+                backward(speed_y)
             elif x_joystick < CENTER - DEADZONE:
                 print('moving Left')
-                left()
+                left(speed_x)
             elif x_joystick > CENTER + DEADZONE:
                 print('moving Right')
-                right()
+                right(speed_x)
             else:
                 stopped()
         elif event.type == ecodes.EV_KEY:
