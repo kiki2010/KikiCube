@@ -22,6 +22,10 @@ def setUp():
     global pwm_m1a, pwm_m1b, pwm_m2a, pwm_m2b
     GPIO.setmode(GPIO.BCM)
 
+    for pwm in [pwm_m1b, pwm_m1a, pwm_m2a, pwm_m2b]:
+        if pwm is not None:
+            pwm.stop() 
+
     #All outputs
     GPIO.setup(m1a, GPIO.OUT)
     GPIO.setup(m2a, GPIO.OUT)
