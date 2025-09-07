@@ -81,7 +81,7 @@ def gamepad_loop():
                     recording = True
                     stop_event.clear()
                     audio_thread = threading.Thread(target=recordAudio)
-                    saveAudio()
+                    audio_thread.start()
                 else:
                     print('stopping recording')
                     recording = False
