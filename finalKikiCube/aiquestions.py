@@ -16,7 +16,7 @@ import time
 # Variables:
 audioFile = 'audio.wav'
 rhasspyUrl = 'http://localhost:12101/api/speech-to-text'
-ollamaModel = 'tinyllama'
+ollamaModel = 'gemma:2b'
 mic_device = 'plughw:3,0'
 
 stop_event = threading.Event()
@@ -26,7 +26,7 @@ speaker = espeakng.ESpeakNG()
 speaker.voice = 'en'
 speaker.say("Hi, I am KikiCube. Press A to ask for help.")
 
-# Funtions for audio recording and asking TinyLlama AI
+# Funtions for audio recording and asking Gemma:2b AI
 
 def audiototext(filename=audioFile):
     if not os.path.exists(filename) or os.path.getsize(filename) < 1000:
